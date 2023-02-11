@@ -50,6 +50,15 @@ def append_record(symbol, best_buy_1, best_buy_2, best_buy_3, best_buy_4,best_se
     conn.commit()
     conn.close()
 
+def delete_record(symbol):
+    sql = 'delete from bfp where symbol = ?'
+    conn = sqlite3.connect("stock.db")
+    cursor = conn.cursor()
+    cursor = cursor.execute(sql, [symbol])
+    print('刪除筆數:', cursor.rowcount)
+    conn.commit()
+    conn.close()
+
 
 if __name__ == '__main__':
     # create_table()
