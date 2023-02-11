@@ -1,5 +1,6 @@
 import twstock
 from BFP_Dao import find_all, find_one, append_record, delete_record
+import matplotlib.pyplot as plt
 def parse_stock(stock):
     stock = list(stock)
     # print(len(stock), type(stock), stock)
@@ -57,6 +58,13 @@ def add(symbol):
     append_record(symbol, bfp.best_buy_1(), bfp.best_buy_2(), bfp.best_buy_3(), bfp.best_buy_4(), bfp.best_sell_1(),
                   bfp.best_sell_2(), bfp.best_sell_3(), bfp.best_sell_4(),
                   str(stock.date), str(stock.price))
+    # 產生 chart
+    # 繪圖
+    plt.title(symbol)
+    plt.plot(stock.date, stock.price, 'b-', linewidth=1)
+    plt.grid(True)  # 格線
+    plt.savefig(symbol + '.png')
+
 
 if __name__ == '__main__':
     print(query_all())

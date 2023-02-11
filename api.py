@@ -19,6 +19,10 @@ def get_stock_by_symbol(symbol: str):
     stock = get_one(symbol)
     return stock
 
+@app.get('/bfp/chart/{symbol}')
+def get_chart_by_symbol(symbol: str):
+    file = open(symbol + '.png', 'rb')
+    return file
 
 @app.get('/bfp/query/all')
 def qyery_stocks():
