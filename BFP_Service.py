@@ -29,6 +29,7 @@ def stock_orm(data):
     stock.setdefault('best_sell_4', data[9])
     stock.setdefault('transaction_time', data[10])
     stock.setdefault('prices', data[11])
+    stock.setdefault('create_time', data[12])
     return stock
 
 def query_all():
