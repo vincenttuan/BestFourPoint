@@ -1,4 +1,4 @@
-from BFP_Service import get_one
+from BFP_Service import get_one, query_all
 from fastapi import FastAPI
 app = FastAPI()
 
@@ -13,6 +13,12 @@ def get_book_by_id(book_id: int):
 def get_stock_by_symbol(symbol: str):
     stock = get_one(symbol)
     return stock
+
+
+@app.get('/bfp/all')
+def all():
+    return query_all()
+
 
 
 

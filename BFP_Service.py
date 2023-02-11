@@ -33,7 +33,7 @@ def stock_orm(data):
 
 def query_all():
     stocks = find_all()
-    stocks = [stock_orm(parse_stock(stock)) for stock in stocks]
+    stocks = [parse_stock(stock) for stock in stocks]
     return stocks
 
 
