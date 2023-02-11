@@ -1,3 +1,4 @@
+import time
 from io import BytesIO
 
 from PIL import ImageFilter, Image
@@ -28,17 +29,29 @@ def get_stock_by_symbol(symbol: str):
 
 @app.get('/bfp/chart/{symbol}', response_class=FileResponse)
 def get_chart_by_symbol(symbol: str):
-    file = open(symbol + '.png', 'rb')
-    original_image = Image.open(file)
-    original_image = original_image.filter(ImageFilter.BLUR)
+    try:
+        file = open(symbol + '.png', 'rb')
+    except FileNotFoundError as e:
+        # 若沒有找到圖就重新新增股票
+        add_stock_by_symbol(symbol)
+        time.sleep(5)
+        try:
+            file = open(symbol + '.png', 'rb')
+        except FileNotFoundError as e:
+            return None
 
-    filtered_image = BytesIO()
-    original_image.save(filtered_image, "PNG")
-    filtered_image.seek(0)
+    try:
+        original_image = Image.open(file)
+        #original_image = original_image.filter(ImageFilter.BLUR)  # 模糊處理
+        original_image = original_image.filter(ImageFilter.UnsharpMask)  # 銳利處理
 
-    return StreamingResponse(filtered_image, media_type="image/png")
+        filtered_image = BytesIO()
+        original_image.save(filtered_image, "PNG")
+        filtered_image.seek(0)
 
-    return file
+        return StreamingResponse(filtered_image, media_type="image/png")
+    except KeyError as e:
+        return None
 
 @app.get('/bfp/query/all')
 def qyery_stocks():

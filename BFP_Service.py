@@ -60,8 +60,13 @@ def add(symbol):
                   str(stock.date), str(stock.price))
     # 產生 chart
     # 繪圖
-    plt.title(symbol)
-    plt.plot(stock.date, stock.price, 'b-', linewidth=1)
+    plt.rcParams['font.sans-serif'] = ['Microsoft JhengHei']
+    plt.rcParams['axes.unicode_minus'] = False
+    plt.title(symbol + "走勢圖")
+    plt.ylabel("價格")
+    plt.xlabel("時間")
+    plt.plot(stock.date, stock.price, 'b-', linewidth=1, label='價格')
+    plt.legend()  # 加入圖例
     plt.grid(True)  # 格線
     plt.savefig(symbol + '.png')
 
