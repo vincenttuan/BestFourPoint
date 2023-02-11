@@ -15,6 +15,21 @@ def parse_stock(stock):
     stock[10] = dates
     return tuple(stock)
 
+def stock_orm(data):
+    stock = {}
+    stock.setdefault('id', data[0])
+    stock.setdefault('symbol', data[1])
+    stock.setdefault('best_buy_1', data[2])
+    stock.setdefault('best_buy_2', data[3])
+    stock.setdefault('best_buy_3', data[4])
+    stock.setdefault('best_buy_4', data[5])
+    stock.setdefault('best_sell_1', data[6])
+    stock.setdefault('best_sell_2', data[7])
+    stock.setdefault('best_sell_3', data[8])
+    stock.setdefault('best_sell_4', data[9])
+    stock.setdefault('transaction_time', data[10])
+    stock.setdefault('prices', data[11])
+    return stock
 
 def query_all():
     stocks = find_all()
@@ -24,7 +39,12 @@ def query_all():
 
 def get_one(symbol):
     stock = find_one(symbol)
-    stock = parse_stock(stock)
+    try:
+        stock = stock_orm(parse_stock(stock))
+    except Exception as e:
+        stock = {
+            "message": "無此代號"
+        }
     return stock
 
 def add(symbol):
