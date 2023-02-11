@@ -9,14 +9,14 @@ def get_book_by_id(book_id: int):
     }
 
 
-@app.get('/bfp/{symbol}')
+@app.get('/bfp/get/{symbol}')
 def get_stock_by_symbol(symbol: str):
     stock = get_one(symbol)
     return stock
 
 
-@app.get('/bfp/all')
-def all():
+@app.get('/bfp/query/all')
+def qyery_stocks():
     return query_all()
 
 
