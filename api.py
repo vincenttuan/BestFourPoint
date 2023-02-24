@@ -1,3 +1,4 @@
+import uvicorn
 import time
 from io import BytesIO
 
@@ -58,5 +59,6 @@ def qyery_stocks():
     return query_all()
 
 
-
+if __name__ == '__main__':
+    uvicorn.run('api:app')
 
