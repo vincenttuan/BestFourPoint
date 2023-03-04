@@ -8,7 +8,7 @@ from starlette.responses import StreamingResponse
 from BFP_Service import get_one, query_all, add
 from fastapi import FastAPI
 from fastapi.responses import FileResponse
-
+from ChatGPT import get_message
 app = FastAPI()
 
 @app.get('/book/{book_id}')
@@ -57,6 +57,11 @@ def get_chart_by_symbol(symbol: str):
 @app.get('/bfp/query/all')
 def qyery_stocks():
     return query_all()
+
+
+@app.get('/chatgpt/get/twii')
+def get_twii_from_chatgpt():
+    return get_message('2023/03/04', '15608', '2023/03/06')
 
 
 if __name__ == '__main__':
