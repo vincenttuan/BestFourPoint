@@ -1,7 +1,8 @@
 import requests
 import json
+from datetime import datetime
 
-api_key = ""
+api_key = "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"
 url = "https://api.openai.com/v1/completions"
 
 def get_message(today, index_value, target_day):
@@ -23,7 +24,8 @@ def get_message(today, index_value, target_day):
     print(json_obj)
     text = json_obj["choices"][0]['text']
     text = text.strip()
-    return text
+    timstamp =  datetime.fromtimestamp(json_obj["created"]).strftime("%Y-%m-%d %H:%M:%S")
+    return text + "\n" + timstamp
 
 
 if __name__ == '__main__':
