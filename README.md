@@ -34,5 +34,6 @@ openssl req -x509 -newkey rsa:4096 -nodes -out server.crt -keyout server.key -da
 uvicorn api:app --ssl-keyfile server.key --ssl-certfile server.crt
 or
 uvicorn.run("api:app", host="0.0.0.0", port=443, log_level="info", ssl_keyfile="server.key", ssl_certfile="server.crt")
-    
+or
+python api.py
 </pre>
