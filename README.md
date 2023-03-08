@@ -17,6 +17,7 @@ uvicorn.run("api:app", host="0.0.0.0", port=8000, log_level="info")
 or
 python api.py
 
+test:
 http://127.0.0.1:8000/docs
 
 
@@ -36,4 +37,7 @@ or
 uvicorn.run("api:app", host="0.0.0.0", port=443, log_level="info", ssl_keyfile="server.key", ssl_certfile="server.crt")
 or
 python api.py
+
+test:
+https://127.0.0.1/docs
 </pre>
