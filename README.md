@@ -1,6 +1,9 @@
 # BestFourPoint
 
 <pre>
+python env path:
+C:\Users\Administrator\AppData\Local\Programs\Python\Python311
+
 pip env path:
 C:\Users\Administrator\AppData\Local\Programs\Python\Python311\Scripts
 
@@ -20,6 +23,7 @@ python api.py
 test:
 http://127.0.0.1:8000/docs
 
+-------
 
 download openssl
 https://slproweb.com/products/Win32OpenSSL.html
